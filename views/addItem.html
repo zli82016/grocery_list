@@ -1,0 +1,15 @@
+<div class="jumbotron">
+  <h1>Add Item Below</h1>
+</div>
+
+<form name="itemForm" novalidate>
+  <div class="form-group" ng-class="{'has-error': itemForm.itemName.$invalid && itemForm.itemName.$dirty}" >
+    <input type="text" class="form-control" id="itemInput" name="itemName" ng-model="grocery.item" required  ng-trim="true" ng-pattern="/^[a-zA-Z0-9_ ]+$/" ng-minlength="2" ng-maxlength="25">
+    <div ng-show="itemForm.itemName.$dirty && (itemForm.itemName.$error.required || itemForm.itemName.$error.pattern)" class="help-block">Enter a valid grocery item.</div>
+    <div ng-show="itemForm.itemName.$touched && itemForm.itemName.$error.maxlength"> The entered item name is too long.</div>
+    <div ng-show="itemForm.itemName.$touched && itemForm.itemName.$error.minlength"> The entered item name is too short.</div>
+  </div>
+  <button type="submit" class="btn btn-primary btn-block" ng-click="addItem()" ng-disabled="itemForm.$invalid">Save</button>
+  <button type="button" class="btn btn-default btn-block" ng-click="cancelAddingItem()">Cancel</button>
+
+</form>
